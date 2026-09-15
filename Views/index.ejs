@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 
 <html> 
-    <head> 
-    <body>
-        <title>
-            My Mini Blog!! 
-        </title>>
-        <link rel="stylesheet" href="/css/styles.css">
-    </head>
-    </body>
+<head> 
+ 
+    <title>My Mini Blog!! 
 
+    </title>
+        <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  
     <h1>My Mini Blog!!</h1>
 
         <p>welcome to my Mini Blog!!</p>
@@ -21,7 +22,7 @@
         <input type="text" name = "title" placeholder = "Title of post" required>
         <textarea name = "content" placeholder = "Content of post" required></textarea>
 
-        <select name="Categories for post">
+        <select name="category">
             <list>
                 <option>
                     Technology
@@ -47,11 +48,11 @@
             <p>Created by: <%= post.creator %></p>
             <p>Category: <%= post.category %></p>
         
-            <form action="/edit/<%= post._id %>" method="GET">
+            <form action="/edit/<%= post.id %>" method="GET">
                 <button type="submit">Edit Post</button>
             </form>
 
-            <form action="/delete/<%= post._id %>" method="POST">
+            <form action="/delete/<%= post.id %>" method="POST">
                 <button type="submit">Delete Post</button>
             </form>
         </div>

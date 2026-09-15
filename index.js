@@ -18,15 +18,33 @@ app.get("/", (req, res) => {
 //     res.send("Homepage is now functioning properly");
 // });
 
+app.get("/edit/:id", (req, res) => {
+    const post = posts.find(p => p.id == req.params.id);
+    res.render("edit", { post: post });
+});
+
+// Hopefully acctually updates the post 
+app.post("/edit/:id", (req, res) => {
+    let post = posts.find(p => p.id == req.params.id);
+
+
+    post.creator = req.body.creator;
+    post.title = req.body.title;
+    post.content = req.body.content;
+    post.category = req.body.category;
+
+    res.redirect("/");
+});
+
 
 let posts = [];
 
-// for creating new post 
+// for creating new post    
 
 
 
 app.post("/create-post", (req, res) => {
-    const { creator, title, content, tags} = req.body;
+    const { creator, title, content, category} = req.body;
 
 
     let newPost = {
@@ -34,13 +52,17 @@ app.post("/create-post", (req, res) => {
         creator: creator,
         title: title,
         content: content,
-        tags: tags,
-    
+        category: category,
         createdAt: new Date().toLocaleString()
     };
 
     posts.push(newPost); //should add the post then return back home
    
+    res.redirect("/");
+});
+
+app.post ("/delete/:id", (req, res) => {
+    posts = posts.filter(p => p.id != req.params.id);
     res.redirect("/");
 });
 
