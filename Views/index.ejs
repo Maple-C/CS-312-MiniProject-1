@@ -2,11 +2,13 @@
 
 <html> 
     <head> 
+    <body>
         <title>
             My Mini Blog!! 
         </title>>
-        <link rel="stylesheet" href="/public/css/styles.css">
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
+    </body>
 
     <h1>My Mini Blog!!</h1>
 
@@ -16,10 +18,44 @@
 
     <form action="/create-post" method="POST">
         <input type="text" name="creator" placeholder="Creator" required>
-        
+        <input type="text" name = "title" placeholder = "Title of post" required>
+        <textarea name = "content" placeholder = "Content of post" required></textarea>
+
+        <select name="Categories for post">
+            <list>
+                <option>
+                    Technology
+                </option>"
+                <option>
+                    Education
+                </option>
+                <Option>
+                    Lifestyle
+                </Option>
+            </list>
+        </select>
+            
 
         <button type="submit">Create Post</button>
   
     </form>
 
-   
+    <% posts.forEach(post => { %>
+        <div class="post">
+            <h3><%= post.title %></h3>
+            <p><%= post.content %></p>
+            <p>Created by: <%= post.creator %></p>
+            <p>Category: <%= post.category %></p>
+        
+            <form action="/edit/<%= post._id %>" method="GET">
+                <button type="submit">Edit Post</button>
+            </form>
+
+            <form action="/delete/<%= post._id %>" method="POST">
+                <button type="submit">Delete Post</button>
+            </form>
+        </div>
+    <% }); %>
+
+    </body>
+</html>

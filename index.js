@@ -2,27 +2,40 @@ import express from "express";
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+// Middleware yay!
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 
-// Bringing the homepage up 
 app.get("/", (req, res) => {
-    res.send("Homepage is now functioning properly");
+    res.render("index", { posts: posts });
+
 });
+
+// // Bringing the homepage up 
+// app.get("/", (req, res) => {
+//     res.send("Homepage is now functioning properly");
+// });
 
 
 let posts = [];
 
 // for creating new post 
 
+
+
 app.post("/create-post", (req, res) => {
-    const { creator} = req.body;
+    const { creator, title, content, tags} = req.body;
 
 
     let newPost = {
         id: Date.now(),
         creator: creator,
+        title: title,
+        content: content,
+        tags: tags,
+    
         createdAt: new Date().toLocaleString()
     };
 

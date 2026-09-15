@@ -1,1 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
 
+.post {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.delete {
+    background-color: #ff4d4d;
+    color: white
+}
